@@ -43,13 +43,11 @@ st.markdown("""
 # ====== Business Problems ======
 st.markdown("<h5>📈 Business Challenges</h5>", unsafe_allow_html=True)
 st.markdown("""
-<div class="highlight-box">
 ✅ **Vấn đề chính:**
 - 80% sản phẩm bán chậm thuộc nhóm **Personal Care, Pet Care, Snacks** → Tồn kho cao.
 - 56% KH tạo 80% doanh thu nhưng chưa có chiến lược chăm sóc nhóm trọng điểm.
 - Đơn hàng nhỏ (2-3 sản phẩm), chưa khuyến khích mua thêm.
-</div>
-""", unsafe_allow_html=True)
+""")
 
 # ====== Proposed Methods ======
 st.markdown("<h5>🔍 Proposed Solutions</h5>", unsafe_allow_html=True)
@@ -66,10 +64,10 @@ st.markdown("""
 st.markdown("<h5>📦 Dataset Snapshot</h5>", unsafe_allow_html=True)
 col1, col2 = st.columns(2)
 with col1:
-    st.image("/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/image/transaction.png", caption="Giao dịch (38,765 records)")
+    st.image("image/transaction.png", caption="Giao dịch (38,765 records)")
 with col2:
-    st.image("/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/image/product.png", caption="Sản phẩm (167 items)")
+    st.image("image/product.png", caption="Sản phẩm (167 items)")
 
 # ====== Next Page ======
 st.markdown("---")
-st.page_link("/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/pages/1_📌_Customer_Segmentation_Project.py", label="👉 **Next:** Khám phá EDA và Phân tích RFM", icon="➡️")
+st.page_link("pages/1_📌_Customer_Segmentation_Project.py", label="👉 **Next:** Khám phá EDA và Phân tích RFM", icon="➡️")

@@ -5,6 +5,26 @@ import plotly.express as px
 st.set_page_config(page_title="Result", page_icon="📊")
 st.title("📊 Result of the project")
 
+# ====== CẤU HÌNH SIDEBAR ======
+with st.sidebar:
+    st.markdown("""
+    **🎯 Segmentation Customer Project**
+
+    
+    *Made by:*
+    
+    👩‍💻 **Nguyễn Thị Mai Linh**
+    
+    👨‍💻 **Tô Nguyễn Phương Anh**
+
+    
+    *Instructed by:*
+    👩‍🏫 **Nguyễn Khuất Thùy Phương**
+    
+    *April 2025*
+    """)
+    st.markdown("---")  # Đường phân cách
+
 # ====== GIỚI THIỆU MÔ HÌNH ======
 st.markdown("""
 <h3 style='border-bottom: 1px solid #ff4b4b; padding-bottom: 8px;'>1. Giới Thiệu Thuật Toán KMeans</h3>

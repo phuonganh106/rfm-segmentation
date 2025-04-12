@@ -6,6 +6,26 @@ from sklearn.preprocessing import RobustScaler
 
 st.set_page_config(page_title="GUI", page_icon="🔮")
 
+# ====== CẤU HÌNH SIDEBAR ======
+with st.sidebar:
+    st.markdown("""
+    **🎯 Segmentation Customer Project**
+
+    
+    *Made by:*
+    
+    👩‍💻 **Nguyễn Thị Mai Linh**
+    
+    👨‍💻 **Tô Nguyễn Phương Anh**
+
+    
+    *Instructed by:*
+    👩‍🏫 **Nguyễn Khuất Thùy Phương**
+    
+    *April 2025*
+    """)
+    st.markdown("---")  # Đường phân cách
+
 # 1. Load model & sample data
 try:
   kmeans_model = joblib.load('kmeans_model.pkl')

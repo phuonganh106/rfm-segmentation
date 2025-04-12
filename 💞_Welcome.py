@@ -8,10 +8,14 @@ st.title("💞 Project Introduction")
 with st.sidebar:
     st.markdown("""
     **🎯 Segmentation Customer Project**
+
     
     *Made by:*
+    
     👩‍💻 **Nguyễn Thị Mai Linh**
+    
     👨‍💻 **Tô Nguyễn Phương Anh**
+
     
     *Instructed by:*
     👩‍🏫 **Nguyễn Khuất Thùy Phương**

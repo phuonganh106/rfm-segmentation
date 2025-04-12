@@ -35,7 +35,7 @@ st.markdown("""
 
 col1, col2 = st.columns([1, 1])
 with col1:
-    st.image("/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/image/Elbow_sklearn.png", caption="Elbow method")
+    st.image("image/Elbow_sklearn.png", caption="Elbow method")
     st.markdown("""
     **Thuật toán:** K-Means (Sklearn)
     **Số cụm tối ưu:** 4 (Elbow Method)
@@ -70,7 +70,7 @@ fig = px.scatter(
 )
 st.plotly_chart(fig, use_container_width=True)
 
-st.image("/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/image/Sklearn_kmeans.png", caption="Tree map")
+st.image("image/Sklearn_kmeans.png", caption="Tree map")
 
 # ====== PHẦN 3: BẢNG KẾT QUẢ CHI TIẾT ======
 st.markdown("""
@@ -158,4 +158,4 @@ with tab4:
 
 # ====== Next Page ======
 st.markdown("---")
-st.page_link("/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/pages/3_🧮_GUI.py", label="👉 **Next:** Customer Segmentation App", icon="➡️")
+st.page_link("pages/3_🧮_GUI.py", label="👉 **Next:** Customer Segmentation App", icon="➡️")

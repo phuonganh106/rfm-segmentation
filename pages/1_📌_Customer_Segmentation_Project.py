@@ -2,6 +2,26 @@ import streamlit as st
 st.set_page_config(page_title="Customer Segmentation Project", page_icon="📌")
 st.title("🎯 Customer Segmentation Project")
 
+# ====== CẤU HÌNH SIDEBAR ======
+with st.sidebar:
+    st.markdown("""
+    **🎯 Segmentation Customer Project**
+
+    
+    *Made by:*
+    
+    👩‍💻 **Nguyễn Thị Mai Linh**
+    
+    👨‍💻 **Tô Nguyễn Phương Anh**
+
+    
+    *Instructed by:*
+    👩‍🏫 **Nguyễn Khuất Thùy Phương**
+    
+    *April 2025*
+    """)
+    st.markdown("---")  # Đường phân cách
+
 # ====== EDA Section ======
 st.markdown("<h5>🔎 Exploratory Data Analysis (EDA)</h5>", unsafe_allow_html=True)
 

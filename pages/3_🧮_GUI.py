@@ -8,10 +8,10 @@ st.set_page_config(page_title="GUI", page_icon="🔮")
 
 # 1. Load model & sample data
 try:
-  kmeans_model = joblib.load('/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/kmeans_model.pkl')
-  scaler = joblib.load('/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/scaler.pkl')
+  kmeans_model = joblib.load('kmeans_model.pkl')
+  scaler = joblib.load('scaler.pkl')
 
-  sample_data = pd.read_csv('/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/RFM_data.csv', header=0)
+  sample_data = pd.read_csv('RFM_data.csv', header=0)
   customer_dict = sample_data.set_index('Member_number').to_dict('index')
 
   st.session_state.update({
@@ -44,7 +44,7 @@ if input_method == "🔎 Search by MemberID":
 
     # Load sample customer IDs
     try:
-      customer_ids_df = pd.read_csv('/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/customer.csv')
+      customer_ids_df = pd.read_csv('customer.csv')
       sample_customers = customer_ids_df.head(18)
       
       st.markdown("**Sample Customer IDs:**")
@@ -103,7 +103,7 @@ if input_method == "🔎 Search by MemberID":
 
             # Load transaction history
             try:
-              transactions_df = pd.read_csv('/content/drive/MyDrive/DL07_K302_ToNguyenPhuongAnh/GUI/customer_transaction.csv')
+              transactions_df = pd.read_csv('customer_transaction.csv')
               customer_transactions = transactions_df[transactions_df['Member_number'] == customer_id].reset_index(drop=True)
                             
               if not customer_transactions.empty:

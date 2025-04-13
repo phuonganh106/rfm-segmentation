@@ -74,4 +74,4 @@ st.image("image/top_20_basket_product.png", caption="Top 20 cặp sản phẩm m
 
 # ====== Next Page ======
 st.markdown("---")
-st.page_link("pages/2_📈_Project's_Result.py", label="👉 **Next:** Kết quả Clustering và Chiến lược", icon="➡️")
+st.page_link("pages/2_📈_Project_s_Result.py", label="👉 **Next:** Kết quả Clustering và Chiến lược", icon="➡️")

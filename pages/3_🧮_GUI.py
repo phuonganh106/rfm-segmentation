@@ -218,7 +218,7 @@ elif input_method == "✍️ Input R,F,M information":
         if st.button("❌ Clear All Entries"):
             st.session_state.rfm_entries = pd.DataFrame(columns=['Recency', 'Frequency', 'Monetary'])
             st.success("All entries cleared!")
-            st.experimental_rerun()
+            st.rerun()
 
         # Analyze section (with instruction text)
         st.markdown("---")

@@ -321,9 +321,6 @@ else: # Upload file
           }
           df["Segment"] = df["Cluster"].map(segment_map)
 
-          # RFM Score
-          df["RFM_Score"] = (X_scaled[:, 0]*0.4 + X_scaled[:, 1]*0.4 + X_scaled[:, 2]*0.4)
-
           st.session_state['upload_result'] = df
 
       st.success(f"Complete analysing {len(df)} customers!")
@@ -334,7 +331,6 @@ else: # Upload file
               "Recency": "{:.0f}",
               "Frequency": "{:.0f}",
               "Monetary": "${:,.0f}",
-              "RFM_Score": "{:.2f}"
           }),
           height=400
       )

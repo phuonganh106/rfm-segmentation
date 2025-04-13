@@ -16,7 +16,7 @@ with st.sidebar:
 
     
     *Instructed by:*
-    👩‍🏫 **Nguyễn Khuất Thùy Phương**
+    👩‍🏫 **Khuất Thùy Phương**
     
     *April 2025*
     """)

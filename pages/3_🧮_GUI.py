@@ -327,7 +327,7 @@ else: # Upload file
 
       # Display results
       st.dataframe(
-          df.sort_values("RFM_Score", ascending=False).style.format({
+          df.style.format({
               "Recency": "{:.0f}",
               "Frequency": "{:.0f}",
               "Monetary": "${:,.0f}",

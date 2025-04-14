@@ -213,7 +213,7 @@ elif input_method == "✍️ Input R,F,M information":
     st.markdown("<h5>Input R,F,M information</h5>", unsafe_allow_html=True)
 
     st.markdown("""
-    ### 📝 Input Reference Table
+    ###### 📝 Input Reference Table
     | Metric      | Valid Range | Example Scenarios       |
     |-------------|-------------|-------------------------|
     | **Recency** | 1-500 days  | • Recent: ≤30 days      |

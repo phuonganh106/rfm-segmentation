@@ -236,7 +236,7 @@ elif input_method == "✍️ Input R,F,M information":
         with col2:
             frequency = st.number_input("Frequency (times)", min_value=0, max_value=30, value=0, step=1)
         with col3:
-            monetary = st.number_input("Monetary (USD)", min_value=0.0, max_value=1000.0, value=0)
+            monetary = st.number_input("Monetary (USD)", min_value=0.0, max_value=1000.0, value=0.0)
 
         submitted = st.form_submit_button("➕ Add Entry")
 

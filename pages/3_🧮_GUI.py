@@ -220,7 +220,7 @@ elif input_method == "✍️ Input R,F,M information":
     |             |             | • Dormant: >180 days    |
     | **Frequency**| 1-30 orders | • New: 1-2 orders       |
     |             |             | • Loyal: 6+ orders      |
-    | **Monetary**| $1-$1000    | • Small: ≤$50           |
+    | **Monetary**| 1-1000    | • Small: ≤$50           |
     |             |             | • VIP: >$200            |
     """)
 
@@ -232,11 +232,11 @@ elif input_method == "✍️ Input R,F,M information":
     with st.form("input_form"):
         col1, col2, col3 = st.columns(3)
         with col1:
-            recency = st.number_input("Recency (days)", min_value=1, max_value=500, value=1, step=1)
+            recency = st.number_input("Recency (days)", min_value=0, max_value=500, value=0, step=1)
         with col2:
-            frequency = st.number_input("Frequency (times)", min_value=1, max_value=30, value=1, step=1)
+            frequency = st.number_input("Frequency (times)", min_value=0, max_value=30, value=0, step=1)
         with col3:
-            monetary = st.number_input("Monetary (USD)", min_value=1.0, max_value=1000.0, value=1.0)
+            monetary = st.number_input("Monetary (USD)", min_value=0.0, max_value=1000.0, value=0)
 
         submitted = st.form_submit_button("➕ Add Entry")
 

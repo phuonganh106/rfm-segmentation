@@ -43,6 +43,8 @@ except Exception as e:
   st.error(f"Error loading model: {str(e)}")
   st.stop()
 
+st.title("🔮 Customer Segmention RFM")
+
 # 2. Display model's information
 with st.expander("ℹ️ Model's Information"):
   st.write("**Model is using now:**")
@@ -76,8 +78,6 @@ with st.expander("ℹ️ Model's Information"):
   st.bar_chart(sample_data['Cluster'].value_counts())
 
 # 3. Input data option
-st.title("🔮 Customer Segmention RFM")
-
 st.markdown("<h5>Choose input method:</h5>", unsafe_allow_html=True)
 input_method = st.radio(
     "",
@@ -212,53 +212,21 @@ if input_method == "🔎 Search by MemberID":
 elif input_method == "✍️ Input R,F,M information":
     st.markdown("<h5>Input R,F,M information</h5>", unsafe_allow_html=True)
 
+    st.markdown("""
+    ### 📝 Input Reference Table
+    | Metric      | Valid Range | Example Scenarios       |
+    |-------------|-------------|-------------------------|
+    | **Recency** | 1-500 days  | • Recent: ≤30 days      |
+    |             |             | • Dormant: >180 days    |
+    | **Frequency**| 1-30 orders | • New: 1-2 orders       |
+    |             |             | • Loyal: 6+ orders      |
+    | **Monetary**| $1-$1000    | • Small: ≤$50           |
+    |             |             | • VIP: >$200            |
+    """)
+
     # Initialize session state for storing entries if not exists
     if 'rfm_entries' not in st.session_state:
         st.session_state.rfm_entries = pd.DataFrame(columns=['Recency', 'Frequency', 'Monetary'])
-
-    st.markdown("""
-    ##### 📋 Input Guidelines
-
-    **For optimal segmentation results, please follow these recommendations when entering values:**
-
-    <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin-top:10px">
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
-            <div style="border-left: 3px solid #3498db; padding-left: 10px;">
-                <h6 style="margin:0; color:#2c3e50">🕒 Recency</h6>
-                <p style="margin:5px 0"><b>Range:</b> 1-500 days</p>
-                <p style="margin:5px 0"><i>Example values:</i></p>
-                <ul style="margin-top:5px; padding-left:20px">
-                    <li>Recent: 1-30 days</li>
-                    <li>Moderate: 31-90 days</li>
-                </ul>
-            </div>
-
-            <div style="border-left: 3px solid #e74c3c; padding-left:10px;">
-                <h6 style="margin:0; color:#2c3e50">🔢 Frequency</h6>
-                <p style="margin:5px 0"><b>Range:</b> 1-30 orders</p>
-                <p style="margin:5px 0"><i>Example values:</i></p>
-                <ul style="margin-top:5px; padding-left:20px">
-                    <li>New: 1-2 orders</li>
-                    <li>Regular: 3-5 orders</li>
-                </ul>
-            </div>
-
-            <div style="border-left: 3px solid #2ecc71; padding-left: 10px;">
-                <h6 style="margin:0; color:#2c3e50">💰 Monetary</h6>
-                <p style="margin:5px 0"><b>Range:</b> $1-$1000</p>
-                <p style="margin:5px 0"><i>Example values:</i></p>
-                <ul style="margin-top:5px; padding-left:20px">
-                    <li>Small: $1-$50</li>
-                    <li>Medium: $51-$200</li>
-                </ul>
-            </div>
-        </div>
-
-        <div style="margin-top:15px; padding:10px; background:#fff8e6; border-radius:5px">
-            <small>💡 <b>Tip:</b> Compare your input with our <a href="#model-s-information">segment benchmarks</a> above for reference.</small>
-        </div>
-    </div>   
-    """, unsafe_allow_html=True)
 
     # Input form
     with st.form("input_form"):

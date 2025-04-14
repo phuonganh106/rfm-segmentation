@@ -349,7 +349,26 @@ with st.expander("ℹ️ Model's Information"):
   st.write(f"- Algorithm: {kmeans_model.__class__.__name__}")
   st.write(f"- Scaler: {scaler.__class__.__name__}")
 
+  st.markdown("""
+  **Segmentation Criteria:**
+
+  - **Recency (R):** Days since last purchase
+  - **Frequency (F):** Total number of transactions
+  - **Monetary (M):** Total spending amount
+  """)
+
+  st.markdown("""
+    **Cluster Characteristics:**
+    
+    | Segment   | Avg Recency | Avg Frequency | Avg Monetary |
+    |-----------|-------------|---------------|--------------|
+    | Dormant   | 427 days    | 2 orders      | $45          |
+    | At Risk   | 124 days    | 3 orders      | $51          |
+    | Loyal     | 119 days    | 5 orders      | $110         |
+    | VIP       | 89 days     | 7 orders      | $194         |
+    """)
+    
   st.write("**Training data's information**")
   st.write(f"- Number of customers: {len(sample_data)}")
-  st.write(f"- Clustering distribution:")
+  st.write("**Clustering distribution:**")
   st.bar_chart(sample_data['Cluster'].value_counts())

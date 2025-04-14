@@ -6,7 +6,7 @@ from sklearn.preprocessing import RobustScaler
 
 st.set_page_config(page_title="GUI", page_icon="🔮")
 
-# ====== CẤU HÌNH SIDEBAR ======
+# ====== SIDEBAR ======
 with st.sidebar:
     st.markdown("""
     **🎯 Segmentation Customer Project**
@@ -43,8 +43,39 @@ except Exception as e:
   st.error(f"Error loading model: {str(e)}")
   st.stop()
 
+# 2. Display model's information
+with st.expander("ℹ️ Model's Information"):
+  st.write("**Model is using now:**")
+  st.write(f"- Clustering: {kmeans_model.n_clusters}")
+  st.write(f"- Algorithm: {kmeans_model.__class__.__name__}")
+  st.write(f"- Scaler: {scaler.__class__.__name__}")
 
-# 2. Input data option
+  st.markdown("""
+  **Segmentation Criteria:**
+
+  - **Recency (R):** Days since last purchase
+  - **Frequency (F):** Total number of transactions
+  - **Monetary (M):** Total spending amount
+  """)
+
+  st.markdown("""
+    **Cluster Characteristics:**
+    
+    | Segment   | Avg Recency | Avg Frequency | Avg Monetary |
+    |-----------|-------------|---------------|--------------|
+    | Dormant   | 427 days    | 2 orders      | $45          |
+    | At Risk   | 124 days    | 3 orders      | $51          |
+    | Loyal     | 119 days    | 5 orders      | $110         |
+    | VIP       | 89 days     | 7 orders      | $194         |
+    """)
+    
+  st.write("**Training data's information**")
+  st.write(f"- Number of customers: {len(sample_data)}")
+  st.write("- Number of transaction: 14962")
+  st.write("**Clustering distribution:**")
+  st.bar_chart(sample_data['Cluster'].value_counts())
+
+# 3. Input data option
 st.title("🔮 Customer Segmention RFM")
 
 st.markdown("<h5>Choose input method:</h5>", unsafe_allow_html=True)
@@ -58,7 +89,7 @@ input_method = st.radio(
     horizontal=True
 )
 
-# 3. Input data method
+# 4. Input data method
 if input_method == "🔎 Search by MemberID":
     st.markdown("<h5>Searching Customer's Information</h5>", unsafe_allow_html=True)
 
@@ -185,15 +216,59 @@ elif input_method == "✍️ Input R,F,M information":
     if 'rfm_entries' not in st.session_state:
         st.session_state.rfm_entries = pd.DataFrame(columns=['Recency', 'Frequency', 'Monetary'])
 
+    st.markdown("""
+    ##### 📋 Input Guidelines
+
+    **For optimal segmentation results, please follow these recommendations when entering values:**
+
+    <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin-top:10px">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+            <div style="border-left: 3px solid #3498db; padding-left: 10px;">
+                <h6 style="margin:0; color:#2c3e50">🕒 Recency</h6>
+                <p style="margin:5px 0"><b>Range:</b> 1-500 days</p>
+                <p style="margin:5px 0"><i>Example values:</i></p>
+                <ul style="margin-top:5px; padding-left:20px">
+                    <li>Recent: 1-30 days</li>
+                    <li>Moderate: 31-90 days</li>
+                </ul>
+            </div>
+
+            <div style="border-left: 3px solid #e74c3c; padding-left:10px;">
+                <h6 style="margin:0; color:#2c3e50">🔢 Frequency</h6>
+                <p style="margin:5px 0"><b>Range:</b> 1-30 orders</p>
+                <p style="margin:5px 0"><i>Example values:</i></p>
+                <ul style="margin-top:5px; padding-left:20px">
+                    <li>New: 1-2 orders</li>
+                    <li>Regular: 3-5 orders</li>
+                </ul>
+            </div>
+
+            <div style="border-left: 3px solid #2ecc71; padding-left: 10px;">
+                <h6 style="margin:0; color:#2c3e50">💰 Monetary</h6>
+                <p style="margin:5px 0"><b>Range:</b> $1-$1000</p>
+                <p style="margin:5px 0"><i>Example values:</i></p>
+                <ul style="margin-top:5px; padding-left:20px">
+                    <li>Small: $1-$50</li>
+                    <li>Medium: $51-$200</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top:15px; padding:10px; background:#fff8e6; border-radius:5px">
+            <small>💡 <b>Tip:</b> Compare your input with our <a href="#model-s-information">segment benchmarks</a> above for reference.</small>
+        </div>
+    </div>   
+    """, unsafe_allow_html=True)
+
     # Input form
     with st.form("input_form"):
         col1, col2, col3 = st.columns(3)
         with col1:
-            recency = st.number_input("Recency (days)", min_value=0, max_value=500, value=0)
+            recency = st.number_input("Recency (days)", min_value=1, max_value=500, value=0, step=1)
         with col2:
-            frequency = st.number_input("Frequency (times)", min_value=0, max_value=30, value=0)
+            frequency = st.number_input("Frequency (times)", min_value=1, max_value=30, value=0, step=1)
         with col3:
-            monetary = st.number_input("Monetary (USD)", min_value=0.0, max_value=1000.0, value=0.0)
+            monetary = st.number_input("Monetary (USD)", min_value=1.0, max_value=1000.0, value=0.0)
 
         submitted = st.form_submit_button("➕ Add Entry")
 
@@ -341,34 +416,3 @@ else: # Upload file
           data=df.to_csv(index=False).encode('utf-8'),
           file_name='RFM_result.csv',
       )
-
-# 4. Display model's information
-with st.expander("ℹ️ Model's Information"):
-  st.write("**Model is using now:**")
-  st.write(f"- Clustering: {kmeans_model.n_clusters}")
-  st.write(f"- Algorithm: {kmeans_model.__class__.__name__}")
-  st.write(f"- Scaler: {scaler.__class__.__name__}")
-
-  st.markdown("""
-  **Segmentation Criteria:**
-
-  - **Recency (R):** Days since last purchase
-  - **Frequency (F):** Total number of transactions
-  - **Monetary (M):** Total spending amount
-  """)
-
-  st.markdown("""
-    **Cluster Characteristics:**
-    
-    | Segment   | Avg Recency | Avg Frequency | Avg Monetary |
-    |-----------|-------------|---------------|--------------|
-    | Dormant   | 427 days    | 2 orders      | $45          |
-    | At Risk   | 124 days    | 3 orders      | $51          |
-    | Loyal     | 119 days    | 5 orders      | $110         |
-    | VIP       | 89 days     | 7 orders      | $194         |
-    """)
-    
-  st.write("**Training data's information**")
-  st.write(f"- Number of customers: {len(sample_data)}")
-  st.write("**Clustering distribution:**")
-  st.bar_chart(sample_data['Cluster'].value_counts())
